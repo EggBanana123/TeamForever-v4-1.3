@@ -53,22 +53,6 @@ else()
     target_link_libraries(RetroEngine libtheora)
 endif()
 
-if(RETRO_USE_HW_RENDER)
-    find_package(GLEW CONFIG)
-
-    if(NOT GLEW_FOUND)
-        message(NOTICE "could not find glew, attempting to build from source")
-
-    else()
-        message("found GLEW")
-        add_library(glew ALIAS GLEW::GLEW)
-    endif()
-
-    target_link_libraries(RetroEngine
-        glew
-    )
-endif()
-
 if(RETRO_SDL_VERSION STREQUAL "2")
     find_package(SDL2 CONFIG REQUIRED)
     target_link_libraries(RetroEngine

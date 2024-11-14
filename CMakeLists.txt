@@ -2,9 +2,16 @@ cmake_minimum_required(VERSION 3.7)
 
 project(RetroEngine)
 
+
+option(RETRO_FORCE_CASE_INSENSITIVE "Forces case insensivity." ON)
+option(RETRO_MOD_LOADER "Enables or disables the mod loader." ON)
+option(RETRO_NETWORKING "Enables or disables networking features used for Sonic 2's 2P VS mode." ON)
+option(RETRO_ORIGINAL_CODE "Removes any change that differs from the original code, a playable game can't be built this way." OFF)
+
 set(RETRO_SDL_VERSION 2 CACHE STRING "Select between SDL2 and SDL1, defaults to SDL2")
 
-set(RETRO_NAME "WZ+")
+
+set(RETRO_NAME "s1fs2a")
 
 set(RETRO_OUTPUT_NAME ${RETRO_NAME} CACHE STRING "The exported name of the executable.")
 option(RETRO_NETWORKING "Enables or disables networking features used for Sonic 2's 2P VS mode." ON)

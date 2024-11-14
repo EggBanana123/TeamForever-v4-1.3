@@ -1,6 +1,3 @@
-# PKG-CONFIG IS USED AS THE MAIN DRIVER
-# bc cmake is inconsistent as fuuuckkk
-
 find_package(PkgConfig REQUIRED)
 
 add_executable(RetroEngine ${RETRO_FILES})

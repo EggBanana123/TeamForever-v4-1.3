@@ -52,16 +52,25 @@ If you want to transfer your save(s) from the official mobile version(s), the **
 * You may also need to generate visual assets. To do so, open the Package.appxmanifest file in the designer. Under the Visual Assets tab, select an image of your choice, and click generate.
 
 ## Linux
-### Decompilation
 * To setup your build enviroment and library dependecies, run the following commands:
   * Ubuntu (Mint, Pop!_OS, etc...): `sudo apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libglew-dev libtheora-dev`
     * If you're using Debian, add `libgbm-dev` and `libdrm-dev`.
   * Arch Linux: `sudo pacman -S base-devel git sdl2 libvorbis libogg glew libtheora`
-  * Clone the repo and its other dependencies with the following command: `git clone --recursive https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation.git`
-  * Go into the repo you just cloned with `cd Sonic-1-2-2013-Decompilation`.
-  * Run `make -j5`.
-    * If your distro is using gcc 8.x.x, then add the argument `LIBS=-lstdc++fs`.
-    * -j switch is optional, but will make building faster by running it parallel on multiple cores (8 cores would be -j9).
+  * Clone the repo and its other dependencies with the following command: `git clone --recursive https://github.com/ElspethThePict/TeamForever-v4-1.3.git`
+  * Go into the repo you just cloned with `cd TeamForever-v4-1.3`.
+
+### Make
+* Run `make -j5`.
+  * If your distro is using gcc 8.x.x, then add the argument `LIBS=-lstdc++fs`.
+  * -j switch is optional, but will make building faster by running it parallel on multiple cores (8 cores would be -j9).
+
+### CMake
+
+Compiling is as simple as typing the following in the root repository directory:
+```
+cmake -B build
+cmake --build build --config release
+```
 
 ## Mac
 * Clone the repo, follow the instructions in the [depencencies readme for Mac](./dependencies/mac/dependencies.txt) to setup dependencies, then build via the Xcode project.
