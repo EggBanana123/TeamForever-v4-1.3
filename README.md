@@ -32,11 +32,20 @@ If you want to transfer your save(s) from the official mobile version(s), the **
 
 # How to build
 ## Windows
+### CMake
+To handle dependencies, you'll need to install [Visual Studio Community](https://visualstudio.microsoft.com/downloads/) (make sure to install the `Desktop development with C++` package during the installation) and [vcpkg](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd#1---set-up-vcpkg) (You only need to follow `1 - Set up vcpkg`).
+
+After installing those, run the following in Command Prompt (make sure to replace `[vcpkg root]` with the path to the vcpkg installation!):
+- `[vcpkg root]\vcpkg.exe install glew sdl2 libogg libvorbis --triplet=x64-windows-static` (If you're compiling a 32-bit build, replace `x64-windows-static` with `x86-windows-static`.)
+
+Run `cmake -B build -DCMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows-static -DCMAKE_PREFIX_PATH=[vcpkg root]/installed/x64-windows-static/`, replacing each instance of `[vcpkg root]` with the path to the vcpkg installation.
+  - If you're compiling a 32-bit build, replace each instance of `x64-windows-static` with `x86-windows-static`.
+
+### Visual Studio
 * Clone the repo, then follow the instructions in the [depencencies readme for Windows](./dependencies/windows/dependencies.txt) to setup dependencies, then build via the visual studio solution.
 * Alternatively, you can grab a prebuilt executable from the releases section.
 
-## Windows via MSYS2 (64-bit Only)
-### Decompilation
+### MSYS2 (64-bit Only)
 * Download the newest version of the MSYS2 installer from [here](https://www.msys2.org/) and install it.
 * Run the MINGW64 prompt (from the windows Start Menu/MSYS2 64-bit/MSYS2 MinGW 64-bit), when the program starts enter `pacman -Syuu` in the prompt and hit Enter.
 * Press `Y` when it asks if you want to update packages. If it asks you to close the prompt, do so, then restart it and run the same command again. This updates the packages to their latest versions.
@@ -59,18 +68,18 @@ If you want to transfer your save(s) from the official mobile version(s), the **
   * Clone the repo and its other dependencies with the following command: `git clone --recursive https://github.com/ElspethThePict/TeamForever-v4-1.3.git`
   * Go into the repo you just cloned with `cd TeamForever-v4-1.3`.
 
-### Make
-* Run `make -j5`.
-  * If your distro is using gcc 8.x.x, then add the argument `LIBS=-lstdc++fs`.
-  * -j switch is optional, but will make building faster by running it parallel on multiple cores (8 cores would be -j9).
-
 ### CMake
 
-Compiling is as simple as typing the following in the root repository directory:
+Compiling is as simple as typing the following:
 ```
 cmake -B build
 cmake --build build --config release
 ```
+
+### Make
+* Run `make -j5`.
+  * If your distro is using gcc 8.x.x, then add the argument `LIBS=-lstdc++fs`.
+  * -j switch is optional, but will make building faster by running it parallel on multiple cores (8 cores would be -j9).
 
 ## Mac
 * Clone the repo, follow the instructions in the [depencencies readme for Mac](./dependencies/mac/dependencies.txt) to setup dependencies, then build via the Xcode project.
@@ -108,12 +117,6 @@ A: Try turning on VSync in settings.ini.
 
 ### Q: I found a bug!
 A: Submit an issue in the issues tab and we _might_ fix it in the main branch. Don't expect any future releases, however.
-
-### Q: Will you do a decompilation for Sonic CD (2011)?
-A: I already have! You can find it [here](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation).
-
-### Q: Will you do a decompilation for Sonic Mania?
-A: No. Sonic Mania is much bigger and requires that I'd decompile not only how the (far more complex) RSDKv5 works, but also all _600+_ objects work.
 
 # Special Thanks
 * [Chuli](https://github.com/MGRich) for helping me fix bugs, tweaking up my sometimes sloppy code and generally being really helpful and fun to work with on this project.
