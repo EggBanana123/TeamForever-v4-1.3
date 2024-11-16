@@ -41,6 +41,10 @@ After installing those, run the following in Command Prompt (make sure to replac
 Run `cmake -B build -DCMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows-static -DCMAKE_PREFIX_PATH=[vcpkg root]/installed/x64-windows-static/`, replacing each instance of `[vcpkg root]` with the path to the vcpkg installation.
   - If you're compiling a 32-bit build, replace each instance of `x64-windows-static` with `x86-windows-static`.
 
+The finally, run
+```cmake --build build --config release
+```
+
 ### Visual Studio
 * Clone the repo, then follow the instructions in the [depencencies readme for Windows](./dependencies/windows/dependencies.txt) to setup dependencies, then build via the visual studio solution.
 * Alternatively, you can grab a prebuilt executable from the releases section.
